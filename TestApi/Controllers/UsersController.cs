@@ -20,7 +20,7 @@ namespace TestApi.Controllers
             return await _userService.getUsers();
         }
         [HttpPost("save")]
-        public async Task<bool> SaveUser(User user)
+        public async Task<bool> SaveUser(List<User> user)
         {
             return await _userService.saveUser(user);
         }

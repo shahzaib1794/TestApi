@@ -24,11 +24,11 @@ namespace Test.Business.Service.ServiceAction
             var users = (_env.ContentRootPath + "/App_Data/users.json").ConvertJsonToList<User>();
             return users;
         }
-        public async Task<bool> saveUser(User user)
+        public async Task<bool> saveUser(List<User> users)
         {
             try
             {
-                string json = JsonSerializer.Serialize(user);
+                string json = JsonSerializer.Serialize(users);
 
                 string path = (_env.ContentRootPath + "/App_Data/users.json");
                 using (TextWriter tw = new StreamWriter(path))
