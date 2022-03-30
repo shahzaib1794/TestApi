@@ -15,24 +15,28 @@ namespace TestApi.Controllers
             _userService = userService;
         }
         [HttpGet("get")]
-        public async Task<List<User>> GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            return await _userService.getUsers();
+            var users = await _userService.getUsers();
+            return Ok(users);
         }
         [HttpPost("save")]
-        public async Task<bool> SaveUser(List<User> user)
+        public async Task<IActionResult> SaveUser(List<User> user)
         {
-            return await _userService.saveUser(user);
+            var savedStatus = await _userService.saveUser(user);
+            return Ok(savedStatus);
         }
         [HttpPost("update")]
-        public async Task<bool> UpdateUser(User user)
+        public async Task<IActionResult> UpdateUser(User user)
         {
-            return await _userService.updateUser(user);
+            var updatedUserStatus = await _userService.updateUser(user);
+            return Ok(updatedUserStatus);
         }
         [HttpDelete("delete/{id}")]
-        public async Task<bool> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            return await _userService.deleteUser(id);
+            var deletedUserStatus = await _userService.deleteUser(id);
+            return Ok(deletedUserStatus);
         }
     }
 }

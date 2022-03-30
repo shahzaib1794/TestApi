@@ -18,8 +18,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 //};
 // Add services to the container.
 
-builder.Services.AddControllers().AddNewtonsoftJson(options=>
-    options.SerializerSettings.Converters.Add(new SingleOrArrayListConverter(true)));
+builder.Services.AddControllers().AddNewtonsoftJson(options => {
+    options.SerializerSettings.Converters.Add(new SingleOrArrayListConverter(true)); 
+    options.SerializerSettings.NullValueHandling= NullValueHandling.Ignore;
+    }) ;
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
