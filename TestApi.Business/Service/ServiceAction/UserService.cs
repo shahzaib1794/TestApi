@@ -50,7 +50,7 @@ namespace Test.Business.Service.ServiceAction
                    x.Gender = user.Gender ?? x.Gender;
                    x.Skills = user.Skills ?? x.Skills;
                });
-                dynamic updatedUser = users?.Count > 1 ? users : users?.FirstOrDefault();
+                object updatedUser = users?.Count > 1 ? users : users?.FirstOrDefault();
                 string updatedUsers = JsonSerializer.Serialize(updatedUser);
                 using (TextWriter tw = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json"))
                 {
