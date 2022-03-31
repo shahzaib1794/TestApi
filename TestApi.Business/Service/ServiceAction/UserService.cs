@@ -15,7 +15,7 @@ namespace Test.Business.Service.ServiceAction
     {
         public async Task<List<User>> getUsers()
         {
-            var users = (System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json").ConvertJsonToList<User>();
+            var users = (Directory.GetCurrentDirectory() + "/App_Data/users.json").ConvertJsonToList<User>();
             return users;
         }
         public async Task<bool> saveUser(List<User> users)
@@ -24,7 +24,7 @@ namespace Test.Business.Service.ServiceAction
             {
                 string json = JsonSerializer.Serialize(users);
 
-                string path = (System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json");
+                string path = (Directory.GetCurrentDirectory() + "/App_Data/users.json");
                 using (TextWriter tw = new StreamWriter(path))
                 {
                     tw.WriteLine(json);
@@ -40,7 +40,7 @@ namespace Test.Business.Service.ServiceAction
         {
             try
             {
-                var users = (System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json").ConvertJsonToList<User>();
+                var users = (Directory.GetCurrentDirectory() + "/App_Data/users.json").ConvertJsonToList<User>();
 
                 users?.Where(x => x.Id == user.Id)?.ToList()?.ForEach(x =>
                {
@@ -50,9 +50,9 @@ namespace Test.Business.Service.ServiceAction
                    x.Gender = user.Gender ?? x.Gender;
                    x.Skills = user.Skills ?? x.Skills;
                });
-                object updatedUser = users?.Count > 1 ? users : users?.FirstOrDefault();
+                object? updatedUser = users?.Count > 1 ? users : users?.FirstOrDefault();
                 string updatedUsers = JsonSerializer.Serialize(updatedUser);
-                using (TextWriter tw = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json"))
+                using (TextWriter tw = new StreamWriter(Directory.GetCurrentDirectory() + "/App_Data/users.json"))
                 {
                     tw.WriteLine(updatedUsers);
                 };
@@ -65,10 +65,10 @@ namespace Test.Business.Service.ServiceAction
         }
         public async Task<bool> deleteUser(int id)
         {
-            var users = (System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json").ConvertJsonToList<User>();
+            var users = (Directory.GetCurrentDirectory() + "/App_Data/users.json").ConvertJsonToList<User>();
             users.RemoveAll(x => x.Id == id);
             string deletedUser = JsonSerializer.Serialize(users);
-            using (TextWriter tw = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/App_Data/users.json"))
+            using (TextWriter tw = new StreamWriter(Directory.GetCurrentDirectory() + "/App_Data/users.json"))
             {
                 tw.WriteLine(deletedUser);
             };
