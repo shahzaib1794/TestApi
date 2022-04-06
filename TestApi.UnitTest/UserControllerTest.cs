@@ -10,7 +10,7 @@ using Test.Business.Service.ServiceInterface;
 using TestApi.Controllers;
 using Xunit;
 
-namespace UnitTestProject
+namespace TestApi.UnitTest
 {
     public class UserControllerTest
     {
